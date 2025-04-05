@@ -30,7 +30,7 @@ while 1:
 while 1:
     print("Escolha o metodo de interpolacao\n")
     print("(a) Lagrange")
-    #print("(b) Newton")
+    print("(b) Newton")
     #print("(c) Newton-Gregory (ATENCAO - Este metodo so dara resultados corretos para pontos igualmente espacados)")
 
     i = input()
@@ -39,10 +39,10 @@ while 1:
             print("Foi escolhido o metodo de Lagrange")
             f = metodos.lagrange(listaX, listaY)
             break #pro while, nao pro match
-        #case 'b':
-        #    print("Foi escolhido o metodo de Newton")
-        #    #f = metodos.newton(listaX, listaY)
-        #    break
+        case 'b':
+            print("Foi escolhido o metodo de Newton")
+            f = metodos.newton(listaX, listaY)
+            break
         #case 'c':
         #    print("Foi escolhido o metodo de Newton-Gregory")
         #    #f = metodos.gregory(listaX, listaY)
@@ -78,4 +78,4 @@ plt.show()
 if f == 0:
     print("Sua funcao resultou em f(x) = 0? Analise se os pontos inseridos constituem de fato uma funcao\n")
 
-#(0,0);(1,0);(2,-1)
+#(0,4);(0.2,3.84);(0.4,3.76)

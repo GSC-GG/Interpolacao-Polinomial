@@ -42,3 +42,47 @@ def lagrange(listaX, listaY):
         f = f + y * le[listaY.index(y)]
 
     return f
+
+i = -1
+
+def newton(listaX, listaY):
+
+    class ArvNewton:
+        def __init__(self, valor = None, xvDir = None, xvEsq = None):
+            self.valor = valor
+            self.paiDir = None
+            self.paiEsq = None
+            self.xvDir = xvDir
+            self.xvEsq = xvEsq
+
+    def criaArv(n):
+        global i
+        if n == 1:
+            i += 1
+            return ArvNewton(valor = listaY[i], xvDir = listaX[i], xvEsq = listaX[i])
+        od = ArvNewton()
+        od.paiDir = criaArv(n-1)
+        od.paiEsq = criaArv(n-1)
+        od.xvDir = od.paiDir.xvDir
+        od.xvEsq = od.paiEsq.xvEsq
+        od.valor = (od.paiDir.valor - od.paiEsq.valor) / (od.xvDir - od.xvEsq)
+        i -= 1
+        return od
+    
+    odn = criaArv(len(listaX))
+    od = odn
+    j = len(listaX) - 1
+    f = 0
+    x, d = symbols('x d')
+    
+    while j >= 0:
+        d = od.valor
+        k = 0
+        while k < j:
+            d *= (x - listaX[k])
+            k += 1
+        f += d
+        od = od.paiDir
+        j -= 1
+        
+    return f
