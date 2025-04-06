@@ -31,7 +31,7 @@ while 1:
     print("Escolha o metodo de interpolacao\n")
     print("(a) Lagrange")
     print("(b) Newton")
-    #print("(c) Newton-Gregory (ATENCAO - Este metodo so dara resultados corretos para pontos igualmente espacados)")
+    print("(c) Newton-Gregory (ATENCAO - Este metodo so dara resultados corretos para pontos igualmente espacados)")
 
     i = input()
     match i:
@@ -43,10 +43,10 @@ while 1:
             print("Foi escolhido o metodo de Newton")
             f = metodos.newton(listaX, listaY)
             break
-        #case 'c':
-        #    print("Foi escolhido o metodo de Newton-Gregory")
-        #    #f = metodos.gregory(listaX, listaY)
-        #    break
+        case 'c':
+            print("Foi escolhido o metodo de Newton-Gregory")
+            f = metodos.gregory(listaX, listaY)
+            break
         case _:
             print("Opcao invalida")
 
@@ -68,7 +68,7 @@ x = symbols('x')
 listaX_ordenada = sorted(listaX)
 x_inicio = int(listaX_ordenada[0]) - 100
 x_fim = int(listaX_ordenada[-1]) + 100
-pontos = (x_fim - x_inicio) * 10  # 10 ou 100 pontos por unidade, como preferir
+pontos = (x_fim - x_inicio) * 10
 
 f_lambdify = lambdify(x, f, "numpy")
 
@@ -81,6 +81,6 @@ plt.axvline(0, color='black',linewidth=1)
 plt.grid(True)
 plt.show()
 
-print("O grafico da funcao nao abrange os pontos corretamente? Analise se os pontos inseridos constituem de fato uma funcao\n")
+print("Caso o grafico da funcao nao abranja os pontos corretamente,\nanalise se os pontos foram inseridos na forma devida e se constituem de fato uma funcao\n")
 
 #(0,4);(0.2,3.84);(0.4,3.76)
