@@ -64,9 +64,15 @@ for n in listaY:
 
 
 x = symbols('x')
+
+listaX_ordenada = sorted(listaX)
+x_inicio = int(listaX_ordenada[0]) - 100
+x_fim = int(listaX_ordenada[-1]) + 100
+pontos = (x_fim - x_inicio) * 10  # 10 ou 100 pontos por unidade, como preferir
+
 f_lambdify = lambdify(x, f, "numpy")
 
-x_vals = linspace(int(listaX[0])-100, int(listaX[-1])+100, int(listaX[-1] - listaX[0])*100)
+x_vals = linspace(x_inicio, x_fim, pontos)
 y_vals = f_lambdify(x_vals)
 plt.plot(x_vals, y_vals)
 plt.scatter(listaX, listaY)
@@ -75,7 +81,6 @@ plt.axvline(0, color='black',linewidth=1)
 plt.grid(True)
 plt.show()
 
-if f == 0:
-    print("Sua funcao resultou em f(x) = 0? Analise se os pontos inseridos constituem de fato uma funcao\n")
+print("O grafico da funcao nao abrange os pontos corretamente? Analise se os pontos inseridos constituem de fato uma funcao\n")
 
 #(0,4);(0.2,3.84);(0.4,3.76)
